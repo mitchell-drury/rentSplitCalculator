@@ -1,0 +1,78 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.warning {
+    border: 1px solid red;
+}
+
+#abstract {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#main {
+    text-align: center;
+    margin: 5% auto;
+    width: 92%;
+}
+
+#totalRent {
+    display: block;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    padding: 3px 5px;
+    border: 1px solid black;
+}
+
+input {
+    font-size: 1.1em;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.sqrft {
+    font-size: 1.05em;
+    border: .5px solid grey;
+    padding: 2px 3px;
+}
+
+#totalRent:focus {
+    outline: none;
+}
+
+#percentCommonSpace {
+    display: block;
+    margin: auto;
+}
+
+#percentDisplay {
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th {
+    background-color: #b7b7b7;
+    border: 1px solid black;
+    text-align: left;
+    padding: 3px 5px 2px 5px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 3px 5px 3px 5px;
+}
