@@ -6,6 +6,9 @@ function eventListeners() {
     document.getElementById('totalRent').oninput = function(event) {
         sqrftInput(event);
     }
+    document.getElementById('totalRent').onkeyup = function(event) {
+        keyUpHandler(event);
+    }
 
     let rooms = document.getElementsByClassName('sqrft')
     for (let i=0; i<rooms.length; i++) {
@@ -13,11 +16,14 @@ function eventListeners() {
             this.style.border = '.5px solid grey';
             calculate();
         }
+        rooms[i].onkeyup = function() {
+            keyUpHandler(event);
+        }
     }
 
     document.getElementById('addButton').onclick = function() {
         let roomNumber = document.getElementsByClassName('sqrft').length + 1;
-        let newRoom = "<tr class='room'><td>" + roomNumber + "</td><td><input id='room" + roomNumber + "' class='sqrft' type='text' size='5' maxlength='4' value='0' oninput='sqrftInput(event)'></td><td id='room" + roomNumber + "Cost' class='roomCost'></td><td class='delete' onclick='deleteRoom(event)'><img src='delete.png'></td></tr>"
+        let newRoom = "<tr class='room'><td>" + roomNumber + "</td><td><input id='room" + roomNumber + "' class='sqrft' type='text' size='5' maxlength='4' oninput='sqrftInput(event)' onkeyup='keyUpHandler(event)'></td><td id='room" + roomNumber + "Cost' class='roomCost'></td><td class='delete' onclick='deleteRoom(event)'></td></tr>"
 
         $(newRoom).insertBefore('#addButton');
         calculate();
@@ -75,8 +81,8 @@ function sqrftInput(event) {
 }
 
 function deleteRoom(event) {
-    let roomToDelete = parseInt(($(event.target).parent().parent().children().first().html()));
-    $(event.target).parent().parent().remove();
+    let roomToDelete = parseInt(($(event.target).parent().children().first().html()));
+    $(event.target).parent().remove();
     let rooms = document.getElementsByClassName('room');
     let roomNumber;
     for (let i=0; i<rooms.length; i++) {
@@ -89,4 +95,21 @@ function deleteRoom(event) {
         }
     }
     calculate();
+}
+
+function keyUpHandler(event) {
+    let nextRoom;
+    if (event.which === 13) {
+        if (event.target.id === 'totalRent') {
+            $("input.sqrft").first().focus();
+        } else {
+            let rooms = document.getElementsByClassName('room');
+            nextRoom = parseInt(event.target.id.substring(4)) + 1;
+            if (nextRoom <= rooms.length) {
+                $("#room" + nextRoom).focus();
+            } else {
+                event.target.blur();
+            }
+        }
+    }
 }

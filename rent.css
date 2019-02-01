@@ -71,6 +71,7 @@ input {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 #percentCommonSpace::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -107,12 +108,16 @@ td {
 
 td.delete {
     width: 25px;
+    height: 100%;
+    background-image: url('delete.png');
+    background-size: cover;
+    background-position: center;
+    opacity: .5;
+    transition: .2s;
 }
 
 td.delete:hover {
     cursor: pointer;
-}
-td.delete:hover img {
     opacity: .75;
 }
 
