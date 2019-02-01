@@ -54,7 +54,23 @@ input {
 #percentCommonSpace {
     display: block;
     margin: auto;
+    width: 100%;
+    max-width: 300px;
+    height: 20px;
 }
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  
+input[type=range]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
 
 #percentDisplay {
     margin-bottom: 20px;
@@ -75,4 +91,34 @@ th {
 td {
     border: 1px solid black;
     padding: 3px 5px 3px 5px;
+}
+
+td.delete {
+    width: 25px;
+}
+
+td.delete:hover {
+    cursor: pointer;
+}
+td.delete:hover img {
+    opacity: .75;
+}
+
+td.delete img {
+    height: 25px;
+    width: 25px;
+    margin: auto;
+    opacity: .6;
+    transition: .25s;
+}
+
+#addButton {
+    transition: .25s ease;
+    text-align: center;
+    background-color: #eaeaea
+}
+
+#addButton:hover {
+    background-color:#b7b7b7;
+    cursor: pointer;
 }

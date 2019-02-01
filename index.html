@@ -7,8 +7,9 @@
         <link rel='stylesheet' href='rent.css'>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet">
 
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src='rent.js'></script>
-    </head>
+     </head>
 
     <body onload='eventListeners()'>
         <div id='main'>
@@ -29,22 +30,29 @@
                         <th> Sqr Ft</th>
                         <th>Rent</th>
                     </tr>
-                    <tr>
-                        <td>Small</td><td><input id='room1' class='sqrft' type='text' size='5' maxlength='4' value='115'></td><td id='room1Cost' class='roomCost'></td>
+                    <tr class='room'>
+                        <td>1</td>
+                        <td><input id='room1' class='sqrft' type='text' size='5' maxlength='4'></td>
+                        <td id='room1Cost'class='roomCost'></td>
+                        <td class='delete'><img src='delete.png'></td>
                     </tr>
-                    <tr>
-                        <td>Green</td><td><input id='room2' class='sqrft' type='text' size='5' maxlength='4' value='200'></td><td id='room2Cost' class='roomCost'></td>
+                    <tr class='room'> 
+                        <td>2</td><td><input id='room2' class='sqrft' type='text' size='5' maxlength='4'></td><td id='room2Cost' class='roomCost'></td>
+                        <td class='delete'><img src='delete.png'></td>
                     </tr>
-                    <tr>
-                        <td>Red</td><td><input id='room3' class='sqrft' type='text' size='5' maxlength='4' value='272'></td><td id='room3Cost' class='roomCost'></td>
+                    <tr class='room'>
+                        <td>3</td><td><input id='room3' class='sqrft' type='text' size='5' maxlength='4'></td><td id='room3Cost' class='roomCost'></td>
+                        <td class='delete'><img src='delete.png'></td>
                     </tr>
-                    <tr>
-                        <td>Yellow</td><td><input id='room4' class='sqrft' type='text' size='5' maxlength='4' value='212'></td><td id='room4Cost' class='roomCost'></td>
+                    <tr class='room'>
+                        <td>4</td><td><input id='room4' class='sqrft' type='text' size='5' maxlength='4'></td><td id='room4Cost' class='roomCost'></td>
+                        <td class='delete'><img src='delete.png'></td>
                     </tr>
-                    <tr>
-                        <td>Basement</td><td><input id='room5' class='sqrft' type='text' size='5' maxlength='4' value='212'></td><td id='room5Cost' class='roomCost'></td>
+                    <tr id='addButton'>
+                        <td colspan='3'>Add Another Room</td>
                     </tr>
                 </table>
+
             </div>
         </div>
     </body>

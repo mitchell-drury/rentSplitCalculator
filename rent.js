@@ -3,9 +3,8 @@ function eventListeners() {
         displayPercent();
         calculate();
     }
-    document.getElementById('totalRent').oninput = function() {
-        this.style.border = '1px solid black';
-        calculate();
+    document.getElementById('totalRent').oninput = function(event) {
+        sqrftInput(event);
     }
 
     let rooms = document.getElementsByClassName('sqrft')
@@ -14,6 +13,19 @@ function eventListeners() {
             this.style.border = '.5px solid grey';
             calculate();
         }
+    }
+
+    document.getElementById('addButton').onclick = function() {
+        let roomNumber = document.getElementsByClassName('sqrft').length + 1;
+        let newRoom = "<tr class='room'><td>" + roomNumber + "</td><td><input id='room" + roomNumber + "' class='sqrft' type='text' size='5' maxlength='4' value='0' oninput='sqrftInput(event)'></td><td id='room" + roomNumber + "Cost' class='roomCost'></td><td class='delete' onclick='deleteRoom(event)'><img src='delete.png'></td></tr>"
+
+        $(newRoom).insertBefore('#addButton');
+        calculate();
+    }
+
+    let deleteButtons = document.getElementsByClassName('delete');
+    for(let i=0; i<deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', function(event){deleteRoom(event)});
     }
 }
 
@@ -40,10 +52,10 @@ function calculate() {
     for (let i=0; i<sqrft.length; i++) {
         if (!isNaN(parseInt(sqrft[i].value))) {
             totalsqrft += parseInt(sqrft[i].value);
-            numberOfRooms += 1;
         } else {
             sqrft[i].style.border = '.5px solid red';
         }
+        numberOfRooms += 1;
     }
 
     for (let i=0; i<sqrft.length; i++) {
@@ -51,9 +63,30 @@ function calculate() {
         let roomCost = calculateRoomCost(percentRoom, percentCommonSpace, totalRent, numberOfRooms);
         document.getElementById(sqrft[i].id + 'Cost').innerHTML = roomCost;
     }
-
 }
 
 function calculateRoomCost(percentRoom, percentCommonSpace, totalRent, numberOfRooms) {
     return ((totalRent*percentCommonSpace)/numberOfRooms + totalRent*(1-percentCommonSpace)*percentRoom).toFixed(2);
+}
+
+function sqrftInput(event) {
+    event.target.style.border = '1px solid black';
+    calculate();
+}
+
+function deleteRoom(event) {
+    let roomToDelete = parseInt(($(event.target).parent().parent().children().first().html()));
+    $(event.target).parent().parent().remove();
+    let rooms = document.getElementsByClassName('room');
+    let roomNumber;
+    for (let i=0; i<rooms.length; i++) {
+        roomNumber = parseInt($(rooms[i]).children().first().html());
+        if (roomNumber > roomToDelete) {
+            $(rooms[i]).children().first().html(roomNumber-1);
+            $(rooms[i]).children(":nth-child(2)").children().first().attr("id", "room" + (roomNumber-1));
+            $(rooms[i]).children(":nth-child(3)").attr("id", "room" + (roomNumber-1) + "Cost");
+            
+        }
+    }
+    calculate();
 }
